@@ -1,13 +1,25 @@
 package org.union.usuario;
 
-public class Usuario {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Table;
+
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
+
+@Entity
+@Table(name = "usuario")
+public class Usuario extends PanacheEntity{
+    @GeneratedValue
     private Long id;
-    private String primeiroNome;
-    private String sobrenome;
+    private String nome;
     private String username;
+    private String ra;
     private String email;
     private String senha;
     private Boolean ativo;
+
+
+    public Usuario() {}
     
     public Long getId() {
         return id;
@@ -15,17 +27,11 @@ public class Usuario {
     public void setId(Long id) {
         this.id = id;
     }
-    public String getPrimeiroNome() {
-        return primeiroNome;
+    public String getNome() {
+        return nome;
     }
-    public void setPrimeiroNome(String primeiroNome) {
-        this.primeiroNome = primeiroNome;
-    }
-    public String getSobrenome() {
-        return sobrenome;
-    }
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
     public String getUsername() {
         return username;
@@ -50,7 +56,11 @@ public class Usuario {
     }
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
+    }
+    public String getRa() {
+        return ra;
+    }
+    public void setRa(String ra) {
+        this.ra = ra;
     }  
-    
-    
 }

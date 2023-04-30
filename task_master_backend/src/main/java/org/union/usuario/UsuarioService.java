@@ -24,7 +24,7 @@ public class UsuarioService {
     public Response login(Usuario usuario){
         // Verificar se usuario existe e/ou se o username e senha está correto
         if(usuarioRepository.logar(usuario)==true){
-            return Response.created(null).build();
+            return Response.ok(usuario).build();
         }else{
             return Response.status(Status.BAD_REQUEST).build();
         }
@@ -34,7 +34,12 @@ public class UsuarioService {
     @PermitAll
     @Path("/cadastro")
     public Response cadastro(Usuario usuario){
-        usuarioRepository.cadastro(usuario);
-        return Response.ok(null).build();
+        if(usuarioRepository.logar(usuario)==true){
+            return Response.status(Status.BAD_REQUEST).build();
+        }else{
+            return Response.status(Status.CREATED).build();
+        }
+        // usuarioRepository.cadastro(usuario);
+        // return Response.created(null).build();
     }
 }

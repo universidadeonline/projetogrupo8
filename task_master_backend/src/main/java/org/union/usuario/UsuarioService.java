@@ -1,18 +1,24 @@
 package org.union.usuario;
 
+import java.net.URI;
+import java.util.List;
+
 import javax.annotation.security.PermitAll;
-import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 
 @ApplicationScoped
 @Path("/usuarioService")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class UsuarioService {
     @Inject
     private UsuarioRepository usuarioRepository;
@@ -20,26 +26,22 @@ public class UsuarioService {
     @POST
     @Path("/login")
     @PermitAll
-    @Consumes(MediaType.APPLICATION_JSON)
     public Response login(Usuario usuario){
-        // Verificar se usuario existe e/ou se o username e senha está correto
-        if(usuarioRepository.logar(usuario)==true){
-            return Response.ok(usuario).build();
-        }else{
-            return Response.status(Status.BAD_REQUEST).build();
-        }
+        return usuarioRepository.find("username", usuario.getUsername())
+            .singleResultOptional().map(user -> Response.ok(usuario).build())
+            .orElse(Response.status(Status.BAD_REQUEST).build());
     }
 
     @POST
     @PermitAll
     @Path("/cadastro")
+    @Transactional
     public Response cadastro(Usuario usuario){
-        if(usuarioRepository.logar(usuario)==true){
+        if(usuarioRepository.isPersistent(usuario)){
             return Response.status(Status.BAD_REQUEST).build();
         }else{
-            return Response.status(Status.CREATED).build();
+            usuarioRepository.persist(usuario);
+            return Response.created(null).build();
         }
-        // usuarioRepository.cadastro(usuario);
-        // return Response.created(null).build();
     }
 }

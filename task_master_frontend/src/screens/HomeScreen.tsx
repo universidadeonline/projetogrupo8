@@ -1,11 +1,6 @@
-import { Box, Button, Heading, IconButton, Text } from "native-base";
-import { FontAwesome5 } from "@expo/vector-icons";
+import { Box, Heading } from "native-base";
 
 import { ScreenDefault } from "../components/ScreenDefault";
-import { ButtonBack } from "../components/ButtonBack";
-
-import { DrawerNavigation, DrawerRoutes } from "../routes/drawer.routes";
-import { useNavigation } from "@react-navigation/native";
 import { Menu } from "../components/Menu";
 
 export function HomeScreen() {

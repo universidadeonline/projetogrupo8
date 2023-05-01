@@ -1,4 +1,4 @@
-import { VStack, Box, Text, useToast } from "native-base";
+import { VStack, useToast } from "native-base";
 import { useNavigation } from "@react-navigation/native";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";

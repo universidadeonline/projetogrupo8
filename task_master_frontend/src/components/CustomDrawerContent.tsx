@@ -3,7 +3,6 @@ import {
   DrawerContentScrollView,
 } from "@react-navigation/drawer";
 import { VStack, HStack, Pressable, Text, Divider, Avatar } from "native-base";
-import { FontAwesome5 } from "@expo/vector-icons";
 import React from "react";
 
 const getTitle = (screenName: string) => {
@@ -16,10 +15,6 @@ const getTitle = (screenName: string) => {
       return "Matéria";
     case "Reports":
       return "Relátorios";
-    case "Trash":
-      return "trash-can";
-    case "Spam":
-      return "alert-circle";
     default:
       return undefined;
   }
@@ -38,7 +33,7 @@ export function CustomDrawerContent(props: DrawerContentComponentProps) {
                 py="2"
                 rounded="md"
                 bg={index === props.state.index ? "#ddd" : "transparent"}
-                onPress={(event) => {
+                onPress={() => {
                   props.navigation.navigate(name);
                 }}
               >

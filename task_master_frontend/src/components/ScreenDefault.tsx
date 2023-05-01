@@ -12,41 +12,46 @@ export function ScreenDefault({
   student = false,
 }: ScreenDefaultProps) {
   return (
-    <VStack
-      flex={1}
-      space={4}
-      alignItems="center"
-      justifyContent="flex-start"
-      backgroundColor="#E7F0EF"
-      safeArea
-    >
-      {!header && (
-        <Image
-          source={require("../assets/overlayer.png")}
-          alt="Alternate Text"
-          resizeMode="contain"
-          position={"absolute"}
-          top={0}
-          left={0}
-        />
-      )}
+    <>
       {header && (
         <Box
           backgroundColor={"#A8A1FC"}
-          py={6}
           w={"100%"}
+          py={6}
           flexDirection="row"
           alignItems="center"
           justifyContent="center"
+          shadow="2"
           safeArea
         >
-          {student && <Avatar bg={"gray.100"} mr={4}/>}
+          {student && <Avatar bg={"gray.100"} mr={4} />}
           <Heading textAlign="center" color={"gray.100"}>
             {header}
           </Heading>
         </Box>
       )}
-      {children}
-    </VStack>
+      <VStack
+        flex={1}
+        space={4}
+        alignItems="center"
+        justifyContent="flex-start"
+        backgroundColor="#E7F0EF"
+        px={3}
+        safeArea
+      >
+        {!header && (
+          <Image
+            source={require("../assets/overlayer.png")}
+            alt="Alternate Text"
+            resizeMode="contain"
+            position={"absolute"}
+            top={0}
+            left={0}
+          />
+        )}
+
+        {children}
+      </VStack>
+    </>
   );
 }

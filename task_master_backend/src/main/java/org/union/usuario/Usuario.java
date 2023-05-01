@@ -7,7 +7,7 @@ import javax.persistence.Table;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 @Entity
-@Table(name = "aluno")
+@Table(name = "usuario")
 public class Usuario extends PanacheEntity{
     @GeneratedValue
     private Long id;

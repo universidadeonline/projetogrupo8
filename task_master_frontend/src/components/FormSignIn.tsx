@@ -1,4 +1,4 @@
-import { VStack, Box, Text, useToast } from "native-base";
+import { VStack, useToast } from "native-base";
 import { useNavigation } from "@react-navigation/native";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -29,7 +29,7 @@ export function FormSignIn() {
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<FormDataProps>({ resolver: yupResolver(signInSchema) });
 
   const toast = useToast();
@@ -81,15 +81,18 @@ export function FormSignIn() {
         )}
       />
 
-      <CheckBox label="Lembre-se de mim" value={""} mt={2}/>
+      <CheckBox label="Lembre-se de mim" value={""} mt={2} />
 
-      <ButtonPurple text="Login" onPress={handleSubmit(handleSignIn)} my={5}/>
+      <ButtonPurple
+        my={5}
+        text="Login"
+        isLoading={isSubmitting}
+        onPress={handleSubmit(handleSignIn)}
+      />
 
       <DividerOR />
 
-      <ButtonGoogle mt={5}/>
-
-     
+      <ButtonGoogle mt={5} />
     </VStack>
   );
 }

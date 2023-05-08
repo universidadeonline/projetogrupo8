@@ -1,7 +1,7 @@
-import { FormControl, Box, Input, IInputProps, Text } from "native-base";
+import { FormControl, Input, IInputProps, Text } from "native-base";
 
 export interface InputDefaultProps extends IInputProps {
-  label: string;
+  label?: string;
   errorMessage?: string | null;
 }
 
@@ -15,11 +15,13 @@ export function InputDefault({
 
   return (
     <FormControl isInvalid={invalid}>
-      <FormControl.Label>
-        <Text color={"purple.900"} fontSize={"md"} fontWeight={"bold"}>
-          {label}
-        </Text>
-      </FormControl.Label>
+      {label && (
+        <FormControl.Label m={0}>
+          <Text color={"purple.900"} fontSize={"md"} fontWeight={"bold"}>
+            {label}
+          </Text>
+        </FormControl.Label>
+      )}
       <Input
         isInvalid={invalid}
         type={"text"}

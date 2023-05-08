@@ -1,5 +1,3 @@
-import { Heading } from "native-base";
-
 import { ScreenDefault } from "../components/ScreenDefault";
 import { Menu } from "../components/Menu";
 

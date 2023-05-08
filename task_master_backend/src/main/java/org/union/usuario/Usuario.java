@@ -1,5 +1,6 @@
 package org.union.usuario;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Table;
@@ -7,15 +8,22 @@ import javax.persistence.Table;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 @Entity
-@Table(name = "usuario")
+@Table(name= "usuario", schema = "public")
 public class Usuario extends PanacheEntity{
     @GeneratedValue
+    @Column(name="id")
     private Long id;
+    @Column(name="nome")
     private String nome;
+    @Column(name="username")
     private String username;
+    @Column(name="ra")
     private String ra;
+    @Column(name="email")
     private String email;
+    @Column(name="senha")
     private String senha;
+    @Column(name="ativo")
     private Boolean ativo;
 
 

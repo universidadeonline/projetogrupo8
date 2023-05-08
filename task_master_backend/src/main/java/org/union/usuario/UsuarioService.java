@@ -1,11 +1,11 @@
 package org.union.usuario;
 
-import java.net.URI;
-import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.security.PermitAll;
 import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -27,21 +27,29 @@ public class UsuarioService {
     @Path("/login")
     @PermitAll
     public Response login(Usuario usuario){
-        return usuarioRepository.find("username", usuario.getUsername())
-            .singleResultOptional().map(user -> Response.ok(usuario).build())
-            .orElse(Response.status(Status.BAD_REQUEST).build());
+        Optional<Usuario> usuarioEncontrado = usuarioRepository.findByUsername(usuario.getUsername());
+        if(usuarioEncontrado.isEmpty()){
+            throw new NotAuthorizedException("Não encontrado");
+        }else{
+            if(usuarioEncontrado.get().getSenha().equals(usuario.getSenha())){
+                return Response.ok().build();
+            }else{
+                throw new NotAuthorizedException("Não autorizado");
+            }
+        }
     }
 
     @POST
     @PermitAll
-    @Path("/cadastro")
     @Transactional
+    @Path("/cadastro")
     public Response cadastro(Usuario usuario){
-        if(usuarioRepository.isPersistent(usuario)){
-            return Response.status(Status.BAD_REQUEST).build();
+        Optional<Usuario> usuarioEncontrado = usuarioRepository.findByUsername(usuario.getUsername());
+        if(usuarioEncontrado.isEmpty()){
+            usuario.persist();
+            return Response.ok(usuario).status(Status.CREATED).build();
         }else{
-            usuarioRepository.persist(usuario);
-            return Response.created(null).build();
+            return Response.status(Status.BAD_REQUEST).build();
         }
     }
 }

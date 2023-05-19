@@ -16,7 +16,7 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 @ApplicationScoped
-@Path("/usuarioService")
+@Path("/usuario")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class UsuarioService {

@@ -1,34 +1,40 @@
 package org.union.usuario;
 
-import javax.persistence.Column;
+
+import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.Table;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import org.union.disciplina.Disciplina;
+import org.union.grupo.Grupo;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 @Entity
-@Table(name= "usuario", schema = "public")
-public class Usuario extends PanacheEntity{
-    @GeneratedValue
-    @Column(name="id")
+@Cacheable
+public class Usuario extends PanacheEntityBase implements Serializable{
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Long id;
-    @Column(name="nome")
     private String nome;
-    @Column(name="username")
     private String username;
-    @Column(name="ra")
     private String ra;
-    @Column(name="email")
     private String email;
-    @Column(name="senha")
     private String senha;
-    @Column(name="ativo")
     private Boolean ativo;
-
-
+    @ManyToMany
+    private List<Disciplina> disciplinas;
+    @ManyToMany
+    private List<Grupo> grupos;
     public Usuario() {}
-    
+
     public Long getId() {
         return id;
     }
@@ -70,5 +76,26 @@ public class Usuario extends PanacheEntity{
     }
     public void setRa(String ra) {
         this.ra = ra;
-    }  
+    }
+
+    public static long getSerialversionuid() {
+        return serialVersionUID;
+    }
+
+    public List<Disciplina> getDisciplinas() {
+        return disciplinas;
+    }
+
+    public void setDisciplinas(List<Disciplina> disciplinas) {
+        this.disciplinas = disciplinas;
+    }
+
+    public List<Grupo> getGrupos() {
+        return grupos;
+    }
+
+    public void setGrupos(List<Grupo> grupos) {
+        this.grupos = grupos;
+    }
+    
 }

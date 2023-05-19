@@ -59,8 +59,10 @@ public class TarefaService {
     @Path("{idDisciplina}")
     public Response createTarefa(Long idDisciplina,Tarefa tarefa) {
         Disciplina disciplina = disciplinaRepository.findById(idDisciplina);
-        // disciplina.setTarefas(List.of(tarefa));
-        // disciplinaRepository.persistAndFlush(disciplina);
+        if(disciplina == null){
+            return Response.status(Status.NOT_FOUND).entity("Disciplina não cadastrada").build();
+
+        }
         tarefa.setDisciplina(disciplina);
         tarefa.persistAndFlush();
         return Response.ok(tarefa).status(Status.CREATED).build();

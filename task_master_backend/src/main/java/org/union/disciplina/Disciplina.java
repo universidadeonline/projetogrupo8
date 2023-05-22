@@ -5,10 +5,14 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Cacheable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import org.union.atividade.Atividade;
@@ -31,7 +35,8 @@ public class Disciplina extends PanacheEntityBase implements Serializable{
     private List<Tarefa> tarefas;
     @OneToMany(mappedBy = "disciplina")
     private List<Atividade> atividades;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "usuario_id")
     private List<Usuario> usuarios;
     
     @Override

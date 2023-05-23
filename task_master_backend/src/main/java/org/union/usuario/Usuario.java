@@ -5,10 +5,14 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Cacheable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import org.union.disciplina.Disciplina;
 import org.union.grupo.Grupo;
@@ -29,7 +33,8 @@ public class Usuario extends PanacheEntityBase implements Serializable{
     private String email;
     private String senha;
     private Boolean ativo;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "disciplina_id")
     private List<Disciplina> disciplinas;
     @ManyToMany
     private List<Grupo> grupos;

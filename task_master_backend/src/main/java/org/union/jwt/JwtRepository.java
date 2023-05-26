@@ -1,20 +1,20 @@
-package org.union.jwt;
+// package org.union.jwt;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+// import java.util.Arrays;
+// import java.util.HashSet;
+// import java.util.Set;
 
-import javax.inject.Singleton;
+// import javax.inject.Singleton;
 
-import io.smallrye.jwt.build.Jwt;
+// import io.smallrye.jwt.build.Jwt;
 
-@Singleton
-public class JwtRepository {
+// @Singleton
+// public class JwtRepository {
     
-    public String generateJwt(){
-        Set<String> roles = new HashSet<>(
-            Arrays.asList("admin","usuario")
-        );
-        return Jwt.issuer("taskmasterjwt").subject("taskmasterjwt").groups(roles).expiresAt(System.currentTimeMillis()+3600).sign();
-    }
-}
+//     public String generateJwt(){
+//         Set<String> roles = new HashSet<>(
+//             Arrays.asList("admin","usuario")
+//         );
+//         return Jwt.issuer("taskmasterjwt").subject("taskmasterjwt").groups(roles).expiresAt(System.currentTimeMillis()+3600).sign();
+//     }
+// }

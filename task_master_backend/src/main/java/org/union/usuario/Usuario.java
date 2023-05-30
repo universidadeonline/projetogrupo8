@@ -12,7 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import org.union.disciplina.Disciplina;
 import org.union.grupo.Grupo;
@@ -36,7 +35,8 @@ public class Usuario extends PanacheEntityBase implements Serializable{
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "disciplina_id")
     private List<Disciplina> disciplinas;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "grupo_id")
     private List<Grupo> grupos;
     public Usuario() {}
 

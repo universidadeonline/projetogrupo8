@@ -56,16 +56,14 @@ public class GrupoService {
 
     @POST
     @Transactional
-    @Path("{idGrupo}")
-    public Response createGrupo(Long idGrupo,Grupo grupo) {
-        Usuario usuario = usuarioRepository.findById(idGrupo);
+    @Path("{idUsuario}")
+    public Response createGrupo(Long idUsuario,Grupo grupo) {
+        Usuario usuario = usuarioRepository.findById(idUsuario);
         if(usuario == null){
             return Response.status(Status.NOT_FOUND).entity("Usuário não cadastrado").build();
 
         }
-        List<Usuario> usuarios = grupo.getUsuarios();
-        usuarios.add(usuario);
-        grupo.setUsuarios(usuarios);
+        grupo.setUsuarios(List.of(usuario));
         grupo.persistAndFlush();
         return Response.ok(grupo).status(Status.CREATED).build();
     }

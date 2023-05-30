@@ -1,10 +1,12 @@
 package org.union.usuario;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.security.PermitAll;
 import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -12,6 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
@@ -22,6 +25,14 @@ import javax.transaction.Transactional;
 public class UsuarioService {
     @Inject
     private UsuarioRepository usuarioRepository;
+
+    @GET
+    @Path("/")
+    @PermitAll
+    public Response getUsuarios(){
+        List<Usuario> usuarios = usuarioRepository.listAll();
+        return Response.ok(usuarios).build();
+    }
 
     @POST
     @Path("/login")

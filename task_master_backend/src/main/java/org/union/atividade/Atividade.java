@@ -36,7 +36,6 @@ public class Atividade extends PanacheEntityBase implements Serializable{
     @ManyToOne
     @JoinColumn(name = "disciplina_id")
     private Disciplina disciplina;
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "grupo_id")
     private Grupo grupo;

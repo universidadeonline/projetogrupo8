@@ -18,9 +18,13 @@ import org.union.atividade.Atividade;
 import org.union.usuario.Usuario;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Cacheable
+@Getter
+@Setter
 public class Grupo extends PanacheEntityBase implements Serializable{
 
     private static final long serialVersionUID = 1L;
@@ -60,45 +64,4 @@ public class Grupo extends PanacheEntityBase implements Serializable{
     public static long getSerialversionuid() {
         return serialVersionUID;
     }
-
-
-
-    public Long getId() {
-        return id;
-    }
-
-
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-
-
-    public String getNome() {
-        return nome;
-    }
-
-
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public List<Usuario> getUsuarios() {
-        return usuarios;
-    }
-
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
-    }
-
-    public List<Atividade> getAtividades() {
-        return atividades;
-    }
-
-    public void setAtividades(List<Atividade> atividades) {
-        this.atividades = atividades;
-    }
-    
 }

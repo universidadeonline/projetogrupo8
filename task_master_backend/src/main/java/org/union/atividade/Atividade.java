@@ -16,9 +16,13 @@ import org.union.grupo.Grupo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Cacheable
+@Getter
+@Setter
 public class Atividade extends PanacheEntityBase implements Serializable{
 
     private static final long serialVersionUID = 1L;
@@ -64,105 +68,4 @@ public class Atividade extends PanacheEntityBase implements Serializable{
     public static long getSerialversionuid() {
         return serialVersionUID;
     }
-
-
-
-    public Long getId() {
-        return id;
-    }
-
-
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-
-
-    public String getTipo() {
-        return tipo;
-    }
-
-
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-
-
-    public String getNota() {
-        return nota;
-    }
-
-
-
-    public void setNota(String nota) {
-        this.nota = nota;
-    }
-
-
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-
-
-    public String getStatus() {
-        return status;
-    }
-
-
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-
-
-    public String getDataEntrega() {
-        return dataEntrega;
-    }
-
-
-
-    public void setDataEntrega(String dataEntrega) {
-        this.dataEntrega = dataEntrega;
-    }
-
-    public Disciplina getDisciplina() {
-        return disciplina;
-    }
-
-    public void setDisciplina(Disciplina disciplina) {
-        this.disciplina = disciplina;
-    }
-
-    public Grupo getGrupo() {
-        return grupo;
-    }
-
-    public void setGrupo(Grupo grupo) {
-        this.grupo = grupo;
-    }
-    
 }

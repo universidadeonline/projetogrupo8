@@ -19,9 +19,13 @@ import org.union.tarefa.Tarefa;
 import org.union.usuario.Usuario;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Cacheable
+@Setter
+@Getter
 public class Disciplina extends PanacheEntityBase implements Serializable{
 
     private static final long serialVersionUID = 1L;
@@ -60,57 +64,4 @@ public class Disciplina extends PanacheEntityBase implements Serializable{
     public static long getSerialversionuid() {
         return serialVersionUID;
     }
-
-
-
-    public Long getId() {
-        return id;
-    }
-
-
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-
-
-    public String getNome() {
-        return nome;
-    }
-
-
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-
-
-    public List<Tarefa> getTarefas() {
-        return tarefas;
-    }
-
-
-
-    public void setTarefas(List<Tarefa> tarefas) {
-        this.tarefas = tarefas;
-    }
-
-    public List<Atividade> getAtividades() {
-        return atividades;
-    }
-
-    public void setAtividades(List<Atividade> atividades) {
-        this.atividades = atividades;
-    }
-
-    public List<Usuario> getUsuarios() {
-        return usuarios;
-    }
-
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
-    }
-    
 }

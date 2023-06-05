@@ -15,9 +15,13 @@ import org.union.disciplina.Disciplina;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Cacheable
+@Setter
+@Getter
 public class Tarefa extends PanacheEntityBase implements Serializable{
 
     private static final long serialVersionUID = 1L;
@@ -53,37 +57,5 @@ public class Tarefa extends PanacheEntityBase implements Serializable{
 
     public static long getSerialversionuid() {
         return serialVersionUID;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Disciplina getDisciplina() {
-        return disciplina;
-    }
-
-    public void setDisciplina(Disciplina disciplina) {
-        this.disciplina = disciplina;
     }
 }
